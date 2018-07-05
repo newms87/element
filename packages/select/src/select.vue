@@ -11,7 +11,7 @@
       :style="{ 'max-width': inputWidth - 32 + 'px' }">
       <span v-if="collapseTags && selected.length">
         <el-tag
-          :closable="!selectDisabled"
+          :closable="!selected[0].disabled && !selectDisabled"
           :size="collapseTagSize"
           :hit="selected[0].hitState"
           type="info"
@@ -32,7 +32,7 @@
         <el-tag
           v-for="item in selected"
           :key="getValueKey(item)"
-          :closable="!selectDisabled"
+          :closable="!item.disabled && !selectDisabled"
           :size="collapseTagSize"
           :hit="item.hitState"
           type="info"
