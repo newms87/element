@@ -10,7 +10,7 @@
     <input
       class="el-switch__input"
       type="checkbox"
-      @change="handleChange"
+      :onchange="handleChange"
       ref="input"
       :id="id"
       :name="name"
@@ -36,7 +36,6 @@
   </div>
 </template>
 <script>
-	import { emitBubble } from 'element-ui/src/mixins/emitBubble';
   import Focus from 'element-ui/src/mixins/focus';
   import Migrating from 'element-ui/src/mixins/migrating';
 
@@ -124,7 +123,6 @@
         let value = !this.checked ? this.activeValue : this.inactiveValue;
 
         this.$emit('input', value);
-        emitBubble('change', this.$refs.input);
 
         this.$nextTick(() => {
           // set input's checked property
