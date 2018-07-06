@@ -121,17 +121,15 @@
     },
     methods: {
       handleChange(event) {
-         let value = !this.checked ? this.activeValue : this.inactiveValue;
+        let value = !this.checked ? this.activeValue : this.inactiveValue;
 
-         this.$emit('input', value);
+        this.$emit('input', value);
+        emitBubble('change', this.$refs.input);
 
         this.$nextTick(() => {
           // set input's checked property
           // in case parent refuses to change component's value
-	        this.$refs.input.value = value;
           this.$refs.input.checked = this.checked;
-
-          emitBubble('change', this.$refs.input);
         });
       },
       setBackgroundColor() {
