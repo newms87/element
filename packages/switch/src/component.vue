@@ -36,6 +36,7 @@
   </div>
 </template>
 <script>
+	import { emitBubble } from 'element-ui/src/mixins/emitBubble';
   import Focus from 'element-ui/src/mixins/focus';
   import Migrating from 'element-ui/src/mixins/migrating';
 
@@ -120,12 +121,17 @@
     },
     methods: {
       handleChange(event) {
-        this.$emit('input', !this.checked ? this.activeValue : this.inactiveValue);
-        this.$emit('change', !this.checked ? this.activeValue : this.inactiveValue);
+         let value = !this.checked ? this.activeValue : this.inactiveValue;
+
+         this.$emit('input', value);
+
         this.$nextTick(() => {
           // set input's checked property
           // in case parent refuses to change component's value
+	        this.$refs.input.value = value;
           this.$refs.input.checked = this.checked;
+
+          emitBubble('change', this.$refs.input);
         });
       },
       setBackgroundColor() {
