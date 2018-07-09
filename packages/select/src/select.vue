@@ -40,7 +40,7 @@
 					type="info"
 					@close="deleteTag($event, item)"
 					disable-transitions>
-						<span class="el-select__tags-text newman-disabled">
+						<span class="el-select__tags-text">
 							<slot name="tag-text" :item="item">{{ item.currentLabel }}</slot>
 						</span>
 				</el-tag>
@@ -99,10 +99,14 @@
 			<template slot="prefix" v-if="$slots.prefix">
 				<slot name="prefix"></slot>
 			</template>
-			<i slot="suffix"
-				:class="['el-select__caret', 'el-input__icon', 'el-icon-' + iconClass]"
-				@click="handleIconClick"
-			></i>
+			<template slot="suffix">
+				<slot name="suffix">
+					<i
+						:class="['el-select__caret', 'el-input__icon', 'el-icon-' + iconClass]"
+						@click="handleIconClick"
+					></i>
+				</slot>
+			</template>
 		</el-input>
 		<transition
 			name="el-zoom-in-top"
