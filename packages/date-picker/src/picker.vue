@@ -877,6 +877,10 @@ export default {
           this.refInput[1].focus();
         }
       });
+
+      this.picker.$on('range-change', (val) => {
+        this.$emit('range-change', val);
+      });
     },
 
     unmountPicker() {
